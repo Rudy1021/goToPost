@@ -12,16 +12,35 @@ import (
 )
 
 func main() {
+	if len(os.Args) == 1 {
+		fmt.Print(`Usage: main <arguments> <ip> <CollectionName>
+-t                  convert to thunder-client
+-p                  convert to postman
+-s                  convert to swagger`)
+		return
+	}
 
 	exportJson := models.Thunder{}
 	now := time.Now().UTC()
-	baseUrl := "127.0.0.1:5487"
+	baseUrl := os.Args[2]
 
 	exportJson.Client = "Thunder Client"
-	exportJson.CollectionName = "test"
+	exportJson.CollectionName = os.Args[3]
 	exportJson.DateExported = now
 	exportJson.Version = "1.1"
 	exportJson.Folders = []string{}
+
+	switch os.Args[1] {
+	case "-t":
+	case "-p":
+	case "-s":
+	default:
+		fmt.Print(`Usage: main <arguments> <ip> <CollectionName>
+		-t                  convert to thunder-client
+		-p                  convert to postman
+		-s                  convert to swagger`)
+		return
+	}
 
 	// 打開檔案，取得檔案指標
 	filePath := "router.go"
@@ -128,7 +147,7 @@ func main() {
 
 	jsonData, _ := json.Marshal(exportJson)
 
-	fmt.Println(string(jsonData))
+	// fmt.Println(string(jsonData))
 
 	err = os.WriteFile("thunder-collection_"+exportJson.CollectionName+".json", jsonData, 0777)
 	if err != nil {
