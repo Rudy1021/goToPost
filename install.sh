@@ -7,7 +7,7 @@ OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 
 # Set the release version.
-VERSION="v0.1.2"
+VERSION="v0.1.3"
 
 # Define the URLs for different operating systems and architectures.
 if [ "$OS" = "darwin" ]; then
