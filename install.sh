@@ -1,41 +1,39 @@
-#!/bin/bash
+#!/bin/sh
 
-# 檢測操作系統和架構
+# Determine the user's operating system.
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+# Determine the user's architecture.
 ARCH=$(uname -m)
 
-# 定義 GitHub 存儲庫擁有者、存儲庫名稱和發布版本
-OWNER="Rudy1021"
-REPO="goToPost"
-VERSION="v0.1.1"
+# Set the release version.
+VERSION="v0.1.2"
 
-# 創建關聯映射，將操作系統和架構映射到文件名
-declare -A FILE_MAP
-FILE_MAP=(
-  ["darwin_arm64"]="goToPost_Darwin_arm64.tar.gz"
-  ["darwin_x86_64"]="goToPost_Darwin_x86_64.tar.gz"
-  ["linux_arm64"]="goToPost_Linux_arm64.tar.gz"
-  ["linux_i386"]="goToPost_Linux_i386.tar.gz"
-  ["linux_x86_64"]="goToPost_Linux_x86_64.tar.gz"
-  ["windows_arm64"]="goToPost_Windows_arm64.zip"
-  ["windows_i386"]="goToPost_Windows_i386.zip"
-  ["windows_x86_64"]="goToPost_Windows_x86_64.zip"
-)
-
-# 確保操作系統和架構的組合存在於映射中
-KEY="$OS_$ARCH"
-if [ -n "${FILE_MAP[$KEY]}" ]; then
-  FILE_NAME="${FILE_MAP[$KEY]}"
+# Define the URLs for different operating systems and architectures.
+if [ "$OS" = "darwin" ]; then
+  URL="https://github.com/Rudy1021/goToPost/releases/download/${VERSION}/gtp"
+elif [ "$OS" = "linux" ]; then
+  if [ "$ARCH" = "x86_64" ]; then
+    URL="https://github.com/Rudy1021/goToPost/releases/download/${VERSION}/gtp"
+  elif [ "$ARCH" = "arm64" ]; then
+    URL="https://github.com/Rudy1021/goToPost/releases/download/${VERSION}/gtp"
+  else
+    echo "Unsupported architecture: $ARCH"
+    exit 1
+  fi
+elif [ "$OS" = "windows" ]; then
+  URL="https://github.com/Rudy1021/goToPost/releases/download/${VERSION}/gtp.exe"
 else
-  echo "Unsupported operating system and architecture combination: $OS $ARCH"
+  echo "Unsupported operating system: $OS"
   exit 1
 fi
 
-# 構建下載 URL
-DOWNLOAD_URL="https://github.com/$OWNER/$REPO/releases/download/$VERSION/$FILE_NAME"
+# Define the installation directory.
+INSTALL_DIR="$(go env GOPATH)/bin"
 
-# 使用 curl 下載文件
-curl -L -o "$FILE_NAME" "$DOWNLOAD_URL"
+# Download and install the binary.
+echo "Downloading and installing GoToPost..."
+curl -sSfL "$URL" -o "$INSTALL_DIR/gtp"
+chmod +x "$INSTALL_DIR/gtp"
 
-# 提示下載完成
-echo "Downloaded file to current directory: $FILE_NAME"
+echo "GoToPost installed successfully to $INSTALL_DIR"
