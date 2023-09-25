@@ -1,14 +1,15 @@
 builds:
-  - main: ./main.go
-    id: 'gtp'
-    binary: gtp
   - goos:
       - linux
       - windows
       - darwin
+    ignore:
+      - goos: darwin
+        goarch: '386'
     env:
       - CGO_ENABLED=0
 archives:
+  - id: tar.gz
+    format: tar.gz
   - id: binary
     format: binary
-    name_template: gtp
