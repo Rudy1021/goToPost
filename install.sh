@@ -1,7 +1,17 @@
 #!/bin/sh
 
+uname_os() {
+  os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  case "$os" in
+    cygwin_nt*) os="windows" ;;
+    mingw*) os="windows" ;;
+    msys_nt*) os="windows" ;;
+  esac
+  echo "$os"
+}
+
 # Determine the user's operating system.
-OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+OS=$(uname_os)
 
 # Determine the user's architecture.
 ARCH=$(uname -m)
