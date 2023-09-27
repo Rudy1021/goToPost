@@ -25,18 +25,18 @@ if [ "$OS" = "darwin" ]; then
   INSTALL_DIR="$(go env GOPATH)/bin"
   EXTENTION="tar.gz"
   URL="https://github.com/Rudy1021/goToPost/releases/download/v${VERSION}/goToPost_${VERSION}_darwin_amd64.${EXTENTION}"
-  FILENAME="goToPost_${VERSION}_windows_amd64.${EXTENTION}"
+  FILENAME="goToPost_${VERSION}_darwin_amd64.${EXTENTION}"
 elif [ "$OS" = "linux" ]; then
   if [ "$ARCH" = "x86_64" ]; then
     INSTALL_DIR="$(go env GOPATH)/bin"
     EXTENTION="tar.gz"
     URL="https://github.com/Rudy1021/goToPost/releases/download/v${VERSION}/goToPost_${VERSION}_linux_amd64.${EXTENTION}"
-    FILENAME="goToPost_${VERSION}_windows_amd64.${EXTENTION}"
+    FILENAME="goToPost_${VERSION}_linux_amd64.${EXTENTION}"
   elif [ "$ARCH" = "arm64" ]; then
     INSTALL_DIR="$(go env GOPATH)/bin"
     EXTENTION="tar.gz"
     URL="https://github.com/Rudy1021/goToPost/releases/download/v${VERSION}/goToPost_${VERSION}_linux_arm64.${EXTENTION}"
-    FILENAME="goToPost_${VERSION}_windows_amd64.${EXTENTION}"
+    FILENAME="goToPost_${VERSION}_linux_arm64.${EXTENTION}"
   else
     echo "Unsupported architecture: $ARCH"
     exit 1
@@ -64,8 +64,6 @@ if [ "$OS" = "windows" ]; then
   mv $FILENAME $INSTALL_DIR
 else
   tar -xzvf $FILENAME -C $INSTALL_DIR
-
-
   mv $INSTALL_DIR/GoToPost $INSTALL_DIR/gtp
   rm ./$FILENAME
 fi
