@@ -308,25 +308,25 @@ hash_sha256() {
     return 1
   fi
 }
-hash_sha256_verify() {
-  TARGET=$1
-  checksums=$2
-  if [ -z "$checksums" ]; then
-    log_err "hash_sha256_verify checksum file not specified in arg2"
-    return 1
-  fi
-  BASENAME=${TARGET##*/}
-  want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
-  if [ -z "$want" ]; then
-    log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
-    return 1
-  fi
-  got=$(hash_sha256 "$TARGET")
-  if [ "$want" != "$got" ]; then
-    log_err "hash_sha256_verify checksum for '$TARGET' did not verify ${want} vs $got"
-    return 1
-  fi
-}
+# hash_sha256_verify() {
+#   TARGET=$1
+#   checksums=$2
+#   if [ -z "$checksums" ]; then
+#     log_err "hash_sha256_verify checksum file not specified in arg2"
+#     return 1
+#   fi
+#   BASENAME=${TARGET##*/}
+#   want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
+#   if [ -z "$want" ]; then
+#     log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
+#     return 1
+#   fi
+#   got=$(hash_sha256 "$TARGET")
+#   if [ "$want" != "$got" ]; then
+#     log_err "hash_sha256_verify checksum for '$TARGET' did not verify ${want} vs $got"
+#     return 1
+#   fi
+# }
 cat /dev/null <<EOF
 ------------------------------------------------------------------------
 End of functions from https://github.com/client9/shlib
