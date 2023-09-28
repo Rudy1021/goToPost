@@ -51,7 +51,6 @@ func UseThunder() {
 	matchesForGroup := reForGroup.FindAllStringSubmatch(string(content), -1)
 
 	if len(matchesForGroup) != 0 {
-		fmt.Println("matchesForGroup start")
 		for _, group := range matchesForGroup {
 			if len(group) == 3 {
 				groupRouter := group[2]
@@ -83,39 +82,14 @@ func UseThunder() {
 			}
 		}
 	} else {
-		// matchesForNameAndActions := reForNameAndActions.FindAllStringSubmatch(string(content), -1)
 
 		matchForActionsWithName := reForActionsWithName.FindAllStringSubmatch(string(content), -1)
 
-		fmt.Println("matchesForNameAndActions start")
-		// for _, routes := range matchesForNameAndActions {
-		// 	if len(routes) == 3 {
-		// 		httpMethod := routes[1]
-		// 		url := routes[2]
-
-		// 		fmt.Printf("HTTP Method: %s\n", httpMethod)
-		// 		fmt.Printf("URL: %s\n", url)
-		// 		request := models.Request{}
-		// 		request.Method = httpMethod
-		// 		request.Url = baseUrl + url
-		// 		request.Name = url
-		// 		request.SortNum = 10000
-		// 		request.Created = now
-		// 		request.Modified = now
-		// 		request.Headers = []string{}
-		// 		request.Params = []string{}
-		// 		request.Tests = []string{}
-		// 		exportJson.Requests = append(exportJson.Requests, request)
-		// 	}
-		// }
 		for _, routes := range matchForActionsWithName {
 			if len(routes) == 4 {
 				httpMethods := routes[1]
 				url := routes[2]
 				handler := routes[3]
-				fmt.Printf("HTTP Method: %s\n", httpMethods)
-				fmt.Printf("URL: %s\n", url)
-				fmt.Printf("Handler: %s\n", handler)
 				request := models.RequestOfThunder{}
 				request.Method = httpMethods
 				request.Url = baseUrl + url
@@ -132,8 +106,6 @@ func UseThunder() {
 	}
 
 	jsonData, _ := json.Marshal(exportJson)
-
-	// fmt.Println(string(jsonData))
 
 	err = os.WriteFile("thunder-collection_"+exportJson.CollectionName+".json", jsonData, 0777)
 	if err != nil {

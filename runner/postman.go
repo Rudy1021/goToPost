@@ -63,7 +63,6 @@ func UsePostman() {
 		if port != "" {
 			port = port[1:] // Remove the leading ":"
 		}
-		fmt.Printf("Protocol: %s\nHost: %s\nPort: %s\n", protocol, host, port)
 	} else {
 		fmt.Println("Invalid URL format:", baseUrl)
 	}
@@ -137,33 +136,9 @@ func UsePostman() {
 
 			}
 		}
-		// matchesForNameAndActions := reForNameAndActions.FindAllStringSubmatch(string(content), -1)
-
-		// for _, routes := range matchesForNameAndActions {
-		// 	if len(routes) == 3 {
-		// 		httpMethod := routes[1]
-		// 		url := routes[2]
-
-		// 		fmt.Printf("HTTP Method: %s\n", httpMethod)
-		// 		fmt.Printf("URL: %s\n", url)
-		// 		request := models.Request{}
-		// 		request.Method = httpMethod
-		// 		request.Url = baseUrl + url
-		// 		request.Name = url
-		// 		request.SortNum = 10000
-		// 		request.Created = now
-		// 		request.Modified = now
-		// 		request.Headers = []string{}
-		// 		request.Params = []string{}
-		// 		request.Tests = []string{}
-		// 		exportJson.Requests = append(exportJson.Requests, request)
-		// 	}
-		// }
 	}
 
 	jsonData, _ := json.Marshal(exportJson)
-
-	// fmt.Println(string(jsonData))
 
 	err = os.WriteFile("postman-collection_"+exportJson.Info.Name+".json", jsonData, 0777)
 	if err != nil {
