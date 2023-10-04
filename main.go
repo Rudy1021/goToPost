@@ -29,10 +29,9 @@ Please visit https://github.com/Rudy1021/goToPost for more information.`)
 	case "-p":
 		runner.UsePostman()
 	default:
-		fmt.Print(`Usage: main <arguments> <ip> <CollectionName>
+		fmt.Print(`Usage: gtp <arguments> <ip> <CollectionName>
 		-t                  convert to thunder-client
-		-p                  convert to postman
-		-s                  convert to swagger`)
+		-p                  convert to postman`)
 		return
 	}
 
