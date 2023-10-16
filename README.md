@@ -1,4 +1,4 @@
-# GoToPost - gtp to Postman
+# gtp - go to Postman
 
 ## Motivation
 
