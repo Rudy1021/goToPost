@@ -6,11 +6,15 @@ At first, I just wanted to create a small utility to automatically convert the c
 
 ## Usage
 
+cd to the router.go directory.
+
 ```bash
 gtp <arguments> <ip> <CollectionName>
-		-t                  convert to thunder-client
-		-p                  convert to postman
+
+-t                  convert to thunder-client
+-p                  convert to postman
 ```
+
 ## Installation
 
 ```bash
