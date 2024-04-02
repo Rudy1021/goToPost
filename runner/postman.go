@@ -55,8 +55,6 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 
 	urlMatches := urlRegex.FindStringSubmatch(baseUrl)
 
-	groupMatchesWithActionsAndName := [][]string{}
-
 	groups := []string{}
 	host := ""
 	protocol := ""
@@ -83,7 +81,7 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 			groups = append(groups, group[1])
 
 			reForGroupWithActionsAndName := regexp.MustCompile(group[1] + `\.([A-Z]+)\s*\("([^"]+)",\s*([^)]+)\)`)
-			groupMatchesWithActionsAndName = reForGroupWithActionsAndName.FindAllStringSubmatch(string(content), -1)
+			groupMatchesWithActionsAndName := reForGroupWithActionsAndName.FindAllStringSubmatch(string(content), -1)
 
 			folderName := ""
 			tempItem := []models.Item{}
@@ -143,7 +141,7 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 
 	for _, item := range groups {
 		reForGroupWithActionsAndName := regexp.MustCompile(item + `\.([A-Z]+)\s*\("([^"]+)",\s*([^)]+)\)`)
-		groupMatchesWithActionsAndName = reForGroupWithActionsAndName.FindAllStringSubmatch(string(content), -1)
+		groupMatchesWithActionsAndName := reForGroupWithActionsAndName.FindAllStringSubmatch(string(content), -1)
 
 		for _, route := range groupMatchesWithActionsAndName {
 			for index, routes := range matchForActionsWithName {
