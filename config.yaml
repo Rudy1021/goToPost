@@ -1,0 +1,9 @@
+cookies:
+  - name: 'name'
+    value: 'value'
+    global: true
+    path: ''
+  - name: 'token'
+    value: '1234567890'
+    global: true
+    path: ''

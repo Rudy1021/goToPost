@@ -43,9 +43,6 @@ func UseThunder() {
 	//"/Attendee/Select"
 	// reForNameAndActions := regexp.MustCompile(`\.([A-Z]+)\s*\("(/?[^"]+)",\s*\w+\)`)
 
-	///"getFunctions"
-	reForActionsWithName := regexp.MustCompile(`\.([A-Z]+)\s*\("([^"]+)",\s*([^)]+)\)`)
-
 	reForGroup := regexp.MustCompile(`(.+)\s:=\s\w+\.Group\(\"(.+)\"\)`)
 
 	matchesForGroup := reForGroup.FindAllStringSubmatch(string(content), -1)
@@ -82,6 +79,8 @@ func UseThunder() {
 			}
 		}
 	} else {
+		///"getFunctions"
+		reForActionsWithName := regexp.MustCompile(`\.([A-Z]+)\s*\("([^"]+)",\s*([^)]+)\)`)
 
 		matchForActionsWithName := reForActionsWithName.FindAllStringSubmatch(string(content), -1)
 

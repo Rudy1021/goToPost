@@ -17,9 +17,9 @@ type Item struct {
 }
 
 type RequestOfPostman struct {
-	Method  string   `json:"method"`
-	Headers []string `json:"headers"`
-	Url     url      `json:"url"`
+	Method  string    `json:"method"`
+	Headers []Headers `json:"headers"`
+	Url     url       `json:"url"`
 }
 
 type url struct {
@@ -28,4 +28,10 @@ type url struct {
 	Host     []string `json:"host"`
 	Path     []string `json:"path"`
 	Port     string   `json:"port"`
+}
+
+type Headers struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+	Type  string `json:"type"`
 }
