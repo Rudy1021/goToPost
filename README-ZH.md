@@ -11,10 +11,12 @@
 cd 到router.go的資料夾
 
 ```bash
-gtp <arguments> <ip> <CollectionName>
+gtp <arguments> <config> <ip> <CollectionName>
 
 -t                  convert to thunder-client
 -p                  convert to postman
+-config   load configuration file
+
 ```
 
 ## 安裝方法

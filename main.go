@@ -14,17 +14,6 @@ func main() {
 
 	flag.Parse()
 
-	// 如果提供了 -config 參數，則使用它
-	baseUrl := os.Args[2]
-
-	fileName := os.Args[3]
-	if *configPtr {
-		baseUrl = os.Args[3]
-
-		fileName = os.Args[4]
-		// 在這裡加入讀取和處理配置文件的代碼
-	}
-
 	if !*thunderPtr && !*postmanPtr {
 		fmt.Print(`
 GoToPost gtp is a tool that generate router's url to json for Thunder Client or Postman.
@@ -37,9 +26,20 @@ Arguments:
 
         -t        Convert to Thunder Client
         -p        Convert to Postman
-				-config   load configuration file
+        -config   load configuration file
 Please visit https://github.com/Rudy1021/goToPost for more information.`)
 		return
+	}
+
+	// 如果提供了 -config 參數，則使用它
+	baseUrl := os.Args[2]
+
+	fileName := os.Args[3]
+	if *configPtr {
+		baseUrl = os.Args[3]
+
+		fileName = os.Args[4]
+		// 在這裡加入讀取和處理配置文件的代碼
 	}
 
 	if *thunderPtr {
