@@ -1,8 +1,8 @@
 package models
 
 type Postman struct {
-	Info info   `json:"info"`
-	Item []Item `json:"item"`
+	Info info     `json:"info"`
+	Item []Folder `json:"item"`
 }
 
 type info struct {
@@ -34,4 +34,9 @@ type Headers struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 	Type  string `json:"type"`
+}
+
+type Folder struct {
+	Name string `json:"name"`
+	Item []Item `json:"item"`
 }

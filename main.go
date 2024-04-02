@@ -19,7 +19,6 @@ func main() {
 
 	fileName := os.Args[3]
 	if *configPtr {
-		fmt.Println("Configuration file:", *configPtr)
 		baseUrl = os.Args[3]
 
 		fileName = os.Args[4]
@@ -32,7 +31,7 @@ GoToPost gtp is a tool that generate router's url to json for Thunder Client or 
 
 Usage: 
 
-        gtp <arguments> <ip:port> <CollectionName>
+        gtp <arguments> <config> <ip:port> <CollectionName>
 
 Arguments:
 
