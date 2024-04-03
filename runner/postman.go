@@ -110,7 +110,6 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 						apiRoutes = "/" + apiRoutes
 					}
 
-					fmt.Println(groupRouter + apiRoutes)
 					path := strings.Split((groupRouter + apiRoutes), "/")[1:]
 
 					fullURL := protocol + "://" + baseUrl + groupRouter + apiRoutes

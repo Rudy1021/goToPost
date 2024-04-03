@@ -3,3 +3,5 @@ router1.go
 *.json
 dist/
 runner/getToken.go
+sql/*
+./config.yaml

@@ -30,7 +30,7 @@ Arguments:
 Please visit https://github.com/Rudy1021/goToPost for more information.`)
 		return
 	}
-
+	// runner.GetToken()
 	// 如果提供了 -config 參數，則使用它
 	baseUrl := os.Args[2]
 
