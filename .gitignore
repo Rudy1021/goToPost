@@ -2,3 +2,4 @@ router.go
 router1.go
 *.json
 dist/
+runner/getToken.go

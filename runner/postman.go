@@ -77,7 +77,7 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 
 	for _, group := range groupMatches {
 		if len(group) == 3 {
-			groupRouter := group[2]
+			groupRouter := "/" + group[2]
 			groups = append(groups, group[1])
 
 			reForGroupWithActionsAndName := regexp.MustCompile(group[1] + `\.([A-Z]+)\s*\("([^"]+)",\s*([^)]+)\)`)
@@ -110,9 +110,10 @@ func UsePostman(baseUrl, fileName string, useConfigFile bool) {
 						apiRoutes = "/" + apiRoutes
 					}
 
+					fmt.Println(groupRouter + apiRoutes)
 					path := strings.Split((groupRouter + apiRoutes), "/")[1:]
 
-					fullURL := protocol + "://" + baseUrl + "/" + groupRouter + apiRoutes
+					fullURL := protocol + "://" + baseUrl + groupRouter + apiRoutes
 
 					postmanItem := models.Item{}
 					postmanItem.Name = strings.Split(handler, ".")[1]
